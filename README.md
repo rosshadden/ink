@@ -1,4 +1,4 @@
 ink
 ===
 
-Stylus color library.
+Ink is a color library for Stylus.
