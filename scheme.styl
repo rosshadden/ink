@@ -1,0 +1,20 @@
+testing = red
+
+scheme(base = $base, stops = 3)
+  colors = (base)
+  degs = 360deg / stops
+
+  if stops == 1
+    colors[1] = lighten(base + 5deg, 10%)
+    colors[2] = lighten(base + 10deg, 20%)
+    colors[3] = lighten(base - 5deg, 10%)
+    colors[4] = lighten(base - 10deg, 20%)
+  else
+    for stop in 1...stops
+      colors[stop] = base + (degs * stop)
+
+    testing = blue
+  colors
+
+getTesting()
+  testing
