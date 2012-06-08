@@ -1,20 +1,25 @@
-testing = red
-
-scheme(base = $base, stops = 3)
+scheme(base = $base, stops = 2, results = stops * 2)
   colors = (base)
   degs = 360deg / stops
-
-  if stops == 1
-    colors[1] = lighten(base + 5deg, 10%)
-    colors[2] = lighten(base + 10deg, 20%)
-    colors[3] = lighten(base - 5deg, 10%)
-    colors[4] = lighten(base - 10deg, 20%)
-  else
+  
+  if length(base) is 1
     for stop in 1...stops
       colors[stop] = base + (degs * stop)
+  else
+    colors = base
+    stops = length(base)
 
-    testing = blue
+  modifier = 1
+  hue = 5deg
+  lightness = 10%
+  for stop in stops..(results - 1)
+    if stop % stops is 0
+      modifier *= -1
+    
+    if modifier is 1
+      hue += 5deg
+      lightness += (100% / (results / 2))
+  
+    colors[stop] = colors[stop % stops] + hue * modifier + lightness * modifier
+
   colors
-
-getTesting()
-  testing
